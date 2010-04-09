@@ -81,7 +81,6 @@
 	self.scrollView.pagingEnabled = YES;
 	
 	UIImageView *imageView;
-	UIView *margin;
 	UIView *main = [[[UIView alloc] initWithFrame:rectScrollView] autorelease];
 	int i = 0;
 	for (UIImage *img in contentArray) {
@@ -110,7 +109,7 @@
 		[main addSubview:pageControl];
 	}
 	if (pageControlEnabledTop || pageControlEnabledBottom || rememberPosition) self.scrollView.delegate = self;
-	if (margin) [margin release];
+	//if (margin) [margin release];
 	return (UIScrollView *)main;
 }
 
