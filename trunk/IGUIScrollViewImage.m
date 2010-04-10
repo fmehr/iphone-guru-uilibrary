@@ -80,21 +80,21 @@
 	self.scrollView.contentOffset = CGPointMake(page * scrollWidth, 0);
 	self.scrollView.pagingEnabled = YES;
 	
-	UIImageView *imageView;
 	UIView *main = [[[UIView alloc] initWithFrame:rectScrollView] autorelease];
 	int i = 0;
 	for (UIImage *img in contentArray) {
-		imageView = [[UIImageView alloc] initWithImage:img];
+		UIImageView *imageView = [[UIImageView alloc] init];
+		imageView.image = img;
 		imageView.contentMode = UIViewContentModeScaleAspectFit;
 		imageView.autoresizingMask = ( UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 		imageView.backgroundColor = [UIColor blackColor];
 		float ratio = img.size.width/rectScrollView.size.width;
 		CGRect imageFrame = CGRectMake(i, 0, rectScrollView.size.width, (img.size.height / ratio));
 		imageView.frame = imageFrame;
-		[self.scrollView addSubview:imageView];
+		[self.scrollView addSubview:(UIView *)imageView];
 		i += scrollWidth;
+		[imageView release];
 	}
-	[imageView release];
 	[main addSubview:scrollView];
 	if (pageControlEnabledTop) {
 		rectPageControl = CGRectMake(0, 5, scrollWidth, 15);
@@ -117,16 +117,23 @@
 	return [self getWithPosition:0];
 }
 
+- (UIScrollView *)getWithPositionMemory {
+	[self enablePositionMemory];
+	return [self getWithPosition:[[[[NSUserDefaults alloc] autorelease] objectForKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, kIGUIScrollViewImageDefaultPageIdentifier]] intValue]];
+}
+
 - (UIScrollView *)getWithPositionMemoryIdentifier:(NSString *)identifier {
 	[self enablePositionMemoryWithIdentifier:identifier];
-	return [self getWithPosition:[[[NSUserDefaults alloc] objectForKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, positionIdentifier]] intValue]];
+	return [self getWithPosition:[[[[NSUserDefaults alloc] autorelease] objectForKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, positionIdentifier]] intValue]];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)sv {
 	int page = sv.contentOffset.x / sv.frame.size.width;
 	pageControl.currentPage = page;
 	if (rememberPosition) {
-		[[NSUserDefaults alloc] setObject:[NSString stringWithFormat:@"%d", page] forKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, positionIdentifier]];
+		[[[NSUserDefaults alloc] autorelease]setObject:[NSString stringWithFormat:@"%d", page] forKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, positionIdentifier]];
+		[[[NSUserDefaults alloc] autorelease] synchronize];
+		NSLog(@"Ukladam :)");
 	}
 }
 

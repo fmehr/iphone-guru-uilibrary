@@ -97,6 +97,8 @@
 
 - (UIScrollView *)getWithPosition:(int)page;
 
+- (UIScrollView *)getWithPositionMemory;
+
 - (UIScrollView *)getWithPositionMemoryIdentifier:(NSString *)identifier;
 
 - (UIScrollView *)get;
