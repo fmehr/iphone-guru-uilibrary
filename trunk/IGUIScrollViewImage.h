@@ -43,7 +43,7 @@
 
 - (void)setWidth:(int)width andHeight:(int)height;
 
-- (void)setSizeFromScrollView:(UIScrollView *)scView;
+- (void)setSizeFromParentView:(UIScrollView *)scView;
 
 - (void)setBackGroudColor:(UIColor *)color;
 

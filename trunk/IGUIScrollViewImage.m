@@ -27,7 +27,7 @@
 	else rectScrollView = CGRectMake(0, 0, width, height);
 }
 
-- (void)setSizeFromScrollView:(UIScrollView *)scView {
+- (void)setSizeFromParentView:(UIScrollView *)scView {
 	scrollWidth = scView.frame.size.width;
 	scrollHeight = scView.frame.size.height;
 	rectScrollView = CGRectMake(0, 0, scrollWidth, scrollHeight);
