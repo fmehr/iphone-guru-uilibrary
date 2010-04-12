@@ -12,7 +12,7 @@
 #define kIGUIScrollViewElementsDefaultPositionIdentifier			@"Default"
 
 #define kIGUIScrollViewElementsDefaultSpacing						20
-#define kIGUIScrollViewElementsDefaultSideSpacing					25
+#define kIGUIScrollViewElementsDefaultSideSpacing					20
 
 
 @implementation IGUIScrollViewElements
@@ -70,7 +70,7 @@
 }
 
 - (CGRect)getNewFrameFromFrame:(CGRect)oldFrame andPosition:(IGUIScrollViewElementsPosition)position {
-	[self addHeight:oldFrame.size.height];
+	if (oldFrame.size.width == 0) oldFrame.size.width = scrollWidth;
 	int pos;
 	if (position == IGUIScrollViewElementsPositionLeft) pos = kIGUIScrollViewElementsDefaultSideSpacing;
 	else {
@@ -87,24 +87,47 @@
 }
 
 - (void)addLabel:(UILabel *)label alignedTo:(IGUIScrollViewElementsPosition)position {
+	label.backgroundColor = [UIColor clearColor];
+	label.numberOfLines = 0;
+	if (label.frame.size.height == 0) {
+		CGSize max = CGSizeMake(scrollWidth, 9999);
+		CGSize expected = [label.text sizeWithFont:label.font constrainedToSize:max lineBreakMode:label.lineBreakMode]; 
+		CGRect newFrame = label.frame;
+		newFrame.size.height = expected.height;
+		label.frame = newFrame;
+	}
 	label.frame = [self getNewFrameFromFrame:label.frame andPosition:position];
+	if (position == IGUIScrollViewElementsPositionRight) label.textAlignment = UITextAlignmentRight;
+	else if (position == IGUIScrollViewElementsPositionCenter) label.textAlignment = UITextAlignmentCenter;
+	else label.textAlignment = UITextAlignmentLeft;
+	[self addHeight:label.frame.size.height];
 	[self addElement:label];
 }
 
 - (void)addTextView:(UITextView *)textView alignedTo:(IGUIScrollViewElementsPosition)position {
 	textView.frame = [self getNewFrameFromFrame:textView.frame andPosition:position];
+	[self addHeight:textView.frame.size.height];
 	[self addElement:textView];
 }
 
 - (void)addButton:(UIButton *)button alignedTo:(IGUIScrollViewElementsPosition)position {
 	button.frame = [self getNewFrameFromFrame:button.frame andPosition:position];
+	[self addHeight:button.frame.size.height];
 	[self addElement:button];
 }
 
 - (void)addImage:(UIImage *)image alignedTo:(IGUIScrollViewElementsPosition)position {
 	UIImageView *iv = [[UIImageView alloc] initWithImage:image];
 	iv.frame = [self getNewFrameFromFrame:iv.frame andPosition:position];
+	[self addHeight:iv.frame.size.height];
 	[self addElement:iv];
+}
+
+- (void)addImageFromUrl:(NSString *)imageUrl withPreloader:(BOOL)preloader alignedTo:(IGUIScrollViewElementsPosition)position {
+	/*UIImageView *iv = [[UIImage alloc] initWithData:<#(NSData *)data#>];
+	iv.frame = [self getNewFrameFromFrame:iv.frame andPosition:position];
+	[self addHeight:iv.frame.size.height];
+	[self addElement:iv];*/
 }
 
 - (UIScrollView *)getWithPositionMemoryIdentifier:(NSString *)identifier {
@@ -115,6 +138,8 @@
 	scrollView.backgroundColor = bcgColor;
 	scrollView.alwaysBounceHorizontal = NO;
 	scrollView.alwaysBounceVertical = YES;
+	
+	//if ([scrollView setscrollType
 	
 	if (elementsArray) for (id object in elementsArray) {
 		[scrollView addSubview:object];
