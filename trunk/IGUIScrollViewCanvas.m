@@ -111,15 +111,15 @@
 
 - (UIScrollView *)getWithPositionMemoryIdentifier:(NSString *)identifier {
 	[self enablePositionMemoryWithIdentifier:identifier];
-	return [self getWithPosition:[[[NSUserDefaults alloc] objectForKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewCanvasDefaultPageIdentifier, positionIdentifier]] intValue]];
+	return [self getWithPosition:[[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewCanvasDefaultPageIdentifier, positionIdentifier]] intValue]];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)sv {
 	int page = sv.contentOffset.x / sv.frame.size.width;
 	pageControl.currentPage = page;
 	if (rememberPosition) {
-		[[NSUserDefaults alloc] setObject:[NSString stringWithFormat:@"%d", page] forKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewCanvasDefaultPageIdentifier, positionIdentifier]];
-		[[NSUserDefaults alloc] synchronize];
+		[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", page] forKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewCanvasDefaultPageIdentifier, positionIdentifier]];
+		[[NSUserDefaults standardUserDefaults] synchronize];
 	}
 }
 
