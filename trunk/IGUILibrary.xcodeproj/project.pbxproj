@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79C3DCB31173597700961857 /* IGUIMapKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C3DCB11173597700961857 /* IGUIMapKit.h */; };
+		79C3DCB41173597700961857 /* IGUIMapKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C3DCB21173597700961857 /* IGUIMapKit.m */; };
+		79C3DCB711735A1100961857 /* IGUIMapKitAnnotation.h in Headers */ = {isa = PBXBuildFile; fileRef = 79C3DCB511735A1100961857 /* IGUIMapKitAnnotation.h */; };
+		79C3DCB811735A1100961857 /* IGUIMapKitAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 79C3DCB611735A1100961857 /* IGUIMapKitAnnotation.m */; };
 		79DFF719116DE3BF00AC3780 /* IGUIScrollViewCanvas.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DFF717116DE3BF00AC3780 /* IGUIScrollViewCanvas.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		79DFF71A116DE3BF00AC3780 /* IGUIScrollViewCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DFF718116DE3BF00AC3780 /* IGUIScrollViewCanvas.m */; };
 		79DFF790116DF9D200AC3780 /* IGUIScrollViewElements.h in Headers */ = {isa = PBXBuildFile; fileRef = 79DFF78E116DF9D200AC3780 /* IGUIScrollViewElements.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -21,6 +25,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		79C3DC1F1173488B00961857 /* IGUIScrollViewImageExample.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = IGUIScrollViewImageExample.txt; sourceTree = "<group>"; };
+		79C3DCB11173597700961857 /* IGUIMapKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGUIMapKit.h; sourceTree = "<group>"; };
+		79C3DCB21173597700961857 /* IGUIMapKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGUIMapKit.m; sourceTree = "<group>"; };
+		79C3DCB511735A1100961857 /* IGUIMapKitAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGUIMapKitAnnotation.h; sourceTree = "<group>"; };
+		79C3DCB611735A1100961857 /* IGUIMapKitAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGUIMapKitAnnotation.m; sourceTree = "<group>"; };
 		79DFF717116DE3BF00AC3780 /* IGUIScrollViewCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGUIScrollViewCanvas.h; sourceTree = "<group>"; };
 		79DFF718116DE3BF00AC3780 /* IGUIScrollViewCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGUIScrollViewCanvas.m; sourceTree = "<group>"; };
 		79DFF78E116DF9D200AC3780 /* IGUIScrollViewElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGUIScrollViewElements.h; sourceTree = "<group>"; };
@@ -81,6 +90,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				79C3DCB01173595900961857 /* MKMapKit */,
 				79E1BAA5116CDE8E00FF81C0 /* UIScrollView */,
 			);
 			name = Classes;
@@ -90,8 +100,20 @@
 			isa = PBXGroup;
 			children = (
 				AA747D9E0F9514B9006C5449 /* IGUILibrary_Prefix.pch */,
+				79C3DC1F1173488B00961857 /* IGUIScrollViewImageExample.txt */,
 			);
 			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		79C3DCB01173595900961857 /* MKMapKit */ = {
+			isa = PBXGroup;
+			children = (
+				79C3DCB11173597700961857 /* IGUIMapKit.h */,
+				79C3DCB21173597700961857 /* IGUIMapKit.m */,
+				79C3DCB511735A1100961857 /* IGUIMapKitAnnotation.h */,
+				79C3DCB611735A1100961857 /* IGUIMapKitAnnotation.m */,
+			);
+			name = MKMapKit;
 			sourceTree = "<group>";
 		};
 		79E1BAA5116CDE8E00FF81C0 /* UIScrollView */ = {
@@ -120,6 +142,8 @@
 				79E1BCC8116D140B00FF81C0 /* IGUIScrollView.h in Headers */,
 				79DFF719116DE3BF00AC3780 /* IGUIScrollViewCanvas.h in Headers */,
 				79DFF790116DF9D200AC3780 /* IGUIScrollViewElements.h in Headers */,
+				79C3DCB31173597700961857 /* IGUIMapKit.h in Headers */,
+				79C3DCB711735A1100961857 /* IGUIMapKitAnnotation.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +193,8 @@
 				79E1BAB5116CDEDE00FF81C0 /* IGUIScrollViewImage.m in Sources */,
 				79DFF71A116DE3BF00AC3780 /* IGUIScrollViewCanvas.m in Sources */,
 				79DFF791116DF9D200AC3780 /* IGUIScrollViewElements.m in Sources */,
+				79C3DCB41173597700961857 /* IGUIMapKit.m in Sources */,
+				79C3DCB811735A1100961857 /* IGUIMapKitAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

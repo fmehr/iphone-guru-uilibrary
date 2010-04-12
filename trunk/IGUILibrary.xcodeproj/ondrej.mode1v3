@@ -266,6 +266,7 @@
 								<string>0867D691FE84028FC02AAC07</string>
 								<string>08FB77AEFE84172EC02AAC07</string>
 								<string>79E1BAA5116CDE8E00FF81C0</string>
+								<string>32C88DFF0371C24200C91783</string>
 								<string>0867D69AFE84028FC02AAC07</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FABC05509CD000000102</string>
@@ -273,7 +274,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>4</integer>
+									<integer>8</integer>
 									<integer>2</integer>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -317,7 +318,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>IGUIScrollViewImage.m</string>
+								<string>IGUIScrollViewElements.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -325,20 +326,21 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>IGUIScrollViewImage.m</string>
+										<string>IGUIScrollViewElements.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>79DFF8E6116F262C00AC3780</string>
+										<string>79C3DCA81173565C00961857</string>
 										<key>history</key>
 										<array>
-											<string>79DFF7C9116DFC6B00AC3780</string>
-											<string>79DFF81A116E07A900AC3780</string>
-											<string>79DFF88E116E491800AC3780</string>
-											<string>79DFF88F116E491800AC3780</string>
-											<string>79DFF890116E491800AC3780</string>
-											<string>79DFF8E4116F262C00AC3780</string>
-											<string>79DFF8E5116F262C00AC3780</string>
+											<string>79C3DC2F117349E800961857</string>
+											<string>79C3DC30117349E800961857</string>
+											<string>79C3DC31117349E800961857</string>
+											<string>79C3DC32117349E800961857</string>
+											<string>79C3DC33117349E800961857</string>
+											<string>79C3DC34117349E800961857</string>
+											<string>79C3DCA61173565C00961857</string>
+											<string>79C3DCA71173565C00961857</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -350,14 +352,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1030, 470}}</string>
+								<string>{{0, 0}, {1030, 464}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1280 719 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>470pt</string>
+							<string>464pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -370,14 +372,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 475}, {1030, 203}}</string>
+								<string>{{0, 469}, {1030, 209}}</string>
 								<key>RubberWindowFrame</key>
 								<string>0 59 1280 719 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>203pt</string>
+							<string>209pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -396,9 +398,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>79DFF8C7116E4C6200AC3780</string>
+				<string>79C3DBF91173427C00961857</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>79DFF8C8116E4C6200AC3780</string>
+				<string>79C3DBFA1173427C00961857</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -556,12 +558,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>IGUIScrollViewElements.m</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -617,7 +621,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>79E1BB16116CE0EF00FF81C0</string>
-				<string>79DFF8C9116E4C6200AC3780</string>
+				<string>79C3DBF11173426D00961857</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
