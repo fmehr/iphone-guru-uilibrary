@@ -86,13 +86,20 @@
 	[elementsArray addObject:element];
 }
 
+- (void)addCustom:(UIView *)element alignedTo:(IGUIScrollViewElementsPosition)position {
+	element.frame = [self getNewFrameFromFrame:element.frame andPosition:position];
+	[self addHeight:element.frame.size.height];
+	[self addElement:element];
+}
+
 - (void)addLabel:(UILabel *)label alignedTo:(IGUIScrollViewElementsPosition)position {
 	label.backgroundColor = [UIColor clearColor];
 	label.numberOfLines = 0;
 	if (label.frame.size.height == 0) {
-		CGSize max = CGSizeMake(scrollWidth, 9999);
+		CGSize max = CGSizeMake((scrollWidth - (2 * kIGUIScrollViewElementsDefaultSideSpacing)), 9999);
 		CGSize expected = [label.text sizeWithFont:label.font constrainedToSize:max lineBreakMode:label.lineBreakMode]; 
 		CGRect newFrame = label.frame;
+		newFrame.size.width = expected.width;
 		newFrame.size.height = expected.height;
 		label.frame = newFrame;
 		if (position == IGUIScrollViewElementsPositionRight) label.textAlignment = UITextAlignmentRight;
@@ -124,17 +131,40 @@
 	[self addElement:textView];
 }
 
-- (void)addButton:(UIButton *)button alignedTo:(IGUIScrollViewElementsPosition)position {
+- (void)addButton:(UIButton *)button withTarget:(id)target andSelector:(SEL)selector alignedTo:(IGUIScrollViewElementsPosition)position {
+	[button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
+	if (button.frame.size.height == 0) {
+		CGSize max = CGSizeMake(scrollWidth, 9999);
+		CGSize expected = [button.titleLabel.text sizeWithFont:button.titleLabel.font constrainedToSize:max lineBreakMode:UILineBreakModeTailTruncation];
+		int diff = (37 - expected.height);
+		if (position == IGUIScrollViewElementsPositionFull) expected.width = ((scrollWidth - diff) - (2 * kIGUIScrollViewElementsDefaultSideSpacing));
+		button.frame = CGRectMake(0, 0, (expected.width + diff), 37);
+	}
+	button.backgroundColor = [UIColor clearColor];
 	button.frame = [self getNewFrameFromFrame:button.frame andPosition:position];
 	[self addHeight:button.frame.size.height];
 	[self addElement:button];
 }
 
+- (void)addButtonWithTitle:(NSString *)title withTarget:(id)target andSelector:(SEL)selector alignedTo:(IGUIScrollViewElementsPosition)position {
+	UIButton *btn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+	[btn setTitle:title forState:UIControlStateNormal];
+	[self addButton:btn withTarget:target andSelector:selector alignedTo:position];
+}
+
 - (void)addImage:(UIImage *)image alignedTo:(IGUIScrollViewElementsPosition)position {
 	UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+	if (iv.frame.size.width > scrollWidth) {
+		int oldW = iv.frame.size.width;
+		int newW = (scrollWidth - (2 * kIGUIScrollViewElementsDefaultSideSpacing));
+		CGRect nf = CGRectMake(0, 0, newW, (iv.frame.size.height * newW) / oldW);
+		iv.frame = nf;
+		iv.contentMode = UIViewContentModeScaleToFill;
+	}
 	iv.frame = [self getNewFrameFromFrame:iv.frame andPosition:position];
 	[self addHeight:iv.frame.size.height];
 	[self addElement:iv];
+	[iv release];
 }
 
 - (void)addImageFromUrl:(NSString *)imageUrl withPreloader:(BOOL)preloader alignedTo:(IGUIScrollViewElementsPosition)position {
