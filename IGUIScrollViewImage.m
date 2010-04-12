@@ -86,7 +86,7 @@
 		UIImageView *imageView = [[UIImageView alloc] init];
 		imageView.image = img;
 		imageView.contentMode = UIViewContentModeScaleAspectFit;
-		imageView.autoresizingMask = ( UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
+		imageView.autoresizingMask = (UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight);
 		imageView.backgroundColor = [UIColor blackColor];
 		float ratio = img.size.width/rectScrollView.size.width;
 		CGRect imageFrame = CGRectMake(i, 0, rectScrollView.size.width, (img.size.height / ratio));
@@ -119,20 +119,20 @@
 
 - (UIScrollView *)getWithPositionMemory {
 	[self enablePositionMemory];
-	return [self getWithPosition:[[[[NSUserDefaults alloc] autorelease] objectForKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, kIGUIScrollViewImageDefaultPageIdentifier]] intValue]];
+	return [self getWithPosition:[[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, kIGUIScrollViewImageDefaultPageIdentifier]] intValue]];
 }
 
 - (UIScrollView *)getWithPositionMemoryIdentifier:(NSString *)identifier {
 	[self enablePositionMemoryWithIdentifier:identifier];
-	return [self getWithPosition:[[[[NSUserDefaults alloc] autorelease] objectForKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, positionIdentifier]] intValue]];
+	return [self getWithPosition:[[[NSUserDefaults standardUserDefaults] objectForKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, positionIdentifier]] intValue]];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)sv {
 	int page = sv.contentOffset.x / sv.frame.size.width;
 	pageControl.currentPage = page;
 	if (rememberPosition) {
-		[[[NSUserDefaults alloc] autorelease]setObject:[NSString stringWithFormat:@"%d", page] forKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, positionIdentifier]];
-		[[[NSUserDefaults alloc] autorelease] synchronize];
+		[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", page] forKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, positionIdentifier]];
+		[[NSUserDefaults standardUserDefaults] synchronize];
 		NSLog(@"Ukladam :)");
 	}
 }
