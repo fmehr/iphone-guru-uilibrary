@@ -115,7 +115,7 @@
 	textView.backgroundColor = [UIColor clearColor];
 	textView.frame = [self getNewFrameFromFrame:textView.frame andPosition:position];
 	if (textView.frame.size.height == 0) {
-		CGSize max = CGSizeMake(scrollWidth, 9999);
+		CGSize max = CGSizeMake((scrollWidth - (2 * kIGUIScrollViewElementsDefaultSideSpacing)), 9999);
 		CGSize expected = [textView.text sizeWithFont:textView.font constrainedToSize:max lineBreakMode:UILineBreakModeWordWrap]; 
 		CGRect newFrame = textView.frame;
 		if (expected.height > (expected.height -= (2 * kIGUIScrollViewElementsDefaultSpacing))) expected.height -= (2 * kIGUIScrollViewElementsDefaultSpacing);
