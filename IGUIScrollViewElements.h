@@ -15,14 +15,15 @@
 typedef enum {
 	IGUIScrollViewElementsPositionLeft = 0,
 	IGUIScrollViewElementsPositionRight = 1,
-	IGUIScrollViewElementsPositionCenter = 2
+	IGUIScrollViewElementsPositionCenter = 2,
+	IGUIScrollViewElementsPositionFull = 3
 } IGUIScrollViewElementsPosition;
 
 typedef enum {
 	IGUIScrollViewElementsUILabel = 0,
 	IGUIScrollViewElementsUITextField = 1,
 	IGUIScrollViewElementsUIButton = 2,
-	IGUIScrollViewElementsUIImage = 2
+	IGUIScrollViewElementsUIImage = 3
 } IGUIScrollViewElementsType;
 
 @interface IGUIScrollViewElements : NSObject {
@@ -62,11 +63,15 @@ typedef enum {
 
 
 
+- (void)addCustom:(UIView *)element alignedTo:(IGUIScrollViewElementsPosition)position;
+
 - (void)addLabel:(UILabel *)label alignedTo:(IGUIScrollViewElementsPosition)position;
 
 - (void)addTextView:(UITextView *)textView alignedTo:(IGUIScrollViewElementsPosition)position;
 
-- (void)addButton:(UIButton *)button alignedTo:(IGUIScrollViewElementsPosition)position;
+- (void)addButton:(UIButton *)button withTarget:(id)target andSelector:(SEL)selector alignedTo:(IGUIScrollViewElementsPosition)position;
+
+- (void)addButtonWithTitle:(NSString *)title withTarget:(id)target andSelector:(SEL)selector alignedTo:(IGUIScrollViewElementsPosition)position;
 
 - (void)addImage:(UIImage *)image alignedTo:(IGUIScrollViewElementsPosition)position;
 

@@ -9,44 +9,6 @@
 ///
 /// @todo enable margin and center the image to the middle of the view
 
-/*
- 
- <b>Examples:</b>
- 
- <i>This is just a short example how to use this class</i>
- 
- <pre>
- - (NSArray *)getImages {
-	NSMutableArray *arr = [[[NSMutableArray alloc] init] autorelease];
-	[arr addObject:[UIImage imageNamed:@"image-1.jpg"]];
-	[arr addObject:[UIImage imageNamed:@"image-2.png"]];
-	[arr addObject:[UIImage imageNamed:@"image-3.png"]];
-	[arr addObject:[UIImage imageNamed:@"image-4.jpg"]];
-	return (NSArray *)arr;
- }
- 
- - (void)viewDidLoad {
-	IGUIScrollViewImage *svimage = [[IGUIScrollViewImage alloc] init];
- 
-	[svimage setSizeFromScrollView:self.scrView]; // takes size of the scroll view you've already placed on stage via Interface Builder
-	// or
-	//[svimage setWidth:320 andHeight:240]; // half screen
- 
-	[svimage enablePositionMemory]; // enables position (pagination) memory for this scroll view
-	// or
-	//[svimage enablePositionMemoryWithIdentifier:@"myIdentifier"]; if you have more instances of this scroll view in your application
- 
-	[svimage enablePageControlOnBottom];
-	// or
-	//[svimage enablePageControlOnTop];
- 
-	[self.myUIView addSubview:[svimage get]]; // and place it on the stage :)
-	[super viewDidLoad];
- }
- </pre>
- 
- 
- */
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
