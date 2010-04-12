@@ -95,17 +95,31 @@
 		CGRect newFrame = label.frame;
 		newFrame.size.height = expected.height;
 		label.frame = newFrame;
+		if (position == IGUIScrollViewElementsPositionRight) label.textAlignment = UITextAlignmentRight;
+		else if (position == IGUIScrollViewElementsPositionCenter) label.textAlignment = UITextAlignmentCenter;
+		else label.textAlignment = UITextAlignmentLeft;
 	}
 	label.frame = [self getNewFrameFromFrame:label.frame andPosition:position];
-	if (position == IGUIScrollViewElementsPositionRight) label.textAlignment = UITextAlignmentRight;
-	else if (position == IGUIScrollViewElementsPositionCenter) label.textAlignment = UITextAlignmentCenter;
-	else label.textAlignment = UITextAlignmentLeft;
 	[self addHeight:label.frame.size.height];
 	[self addElement:label];
 }
 
 - (void)addTextView:(UITextView *)textView alignedTo:(IGUIScrollViewElementsPosition)position {
+	textView.backgroundColor = [UIColor clearColor];
 	textView.frame = [self getNewFrameFromFrame:textView.frame andPosition:position];
+	if (textView.frame.size.height == 0) {
+		CGSize max = CGSizeMake(scrollWidth, 9999);
+		CGSize expected = [textView.text sizeWithFont:textView.font constrainedToSize:max lineBreakMode:UILineBreakModeWordWrap]; 
+		CGRect newFrame = textView.frame;
+		if (expected.height > (expected.height -= (2 * kIGUIScrollViewElementsDefaultSpacing))) expected.height -= (2 * kIGUIScrollViewElementsDefaultSpacing);
+		newFrame.size.height = expected.height;
+		textView.frame = newFrame;
+		if (position == IGUIScrollViewElementsPositionRight) textView.textAlignment = UITextAlignmentRight;
+		else if (position == IGUIScrollViewElementsPositionCenter) textView.textAlignment = UITextAlignmentCenter;
+		else textView.textAlignment = UITextAlignmentLeft;
+	}
+	textView.frame = [self getNewFrameFromFrame:textView.frame andPosition:position];
+	textView.editable = NO;
 	[self addHeight:textView.frame.size.height];
 	[self addElement:textView];
 }
@@ -142,7 +156,18 @@
 	//if ([scrollView setscrollType
 	
 	if (elementsArray) for (id object in elementsArray) {
-		[scrollView addSubview:object];
+		if ([object isKindOfClass:[UILabel class]]) {
+			UILabel *o = (UILabel *)object;
+			if (bcgColor == [UIColor blackColor] && o.textColor == [UIColor blackColor]) o.textColor = [UIColor whiteColor];
+			[scrollView addSubview:o];
+		}
+		else if ([object isKindOfClass:[UITextView class]]) {
+			UITextView *o = (UITextView *)object;
+			if (bcgColor == [UIColor blackColor] && o.textColor == [UIColor blackColor]) o.textColor = [UIColor whiteColor];
+			else if (bcgColor == [UIColor whiteColor] && o.textColor == [UIColor whiteColor]) o.textColor = [UIColor blackColor];
+			[scrollView addSubview:o];
+		}
+		else [scrollView addSubview:object];
 	}
 	
 	return scrollView;
