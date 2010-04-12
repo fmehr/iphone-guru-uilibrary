@@ -133,7 +133,6 @@
 	if (rememberPosition) {
 		[[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"%d", page] forKey:[NSString stringWithFormat:@"%@%@", kIGUIScrollViewImagePageIdentifier, positionIdentifier]];
 		[[NSUserDefaults standardUserDefaults] synchronize];
-		NSLog(@"Ukladam :)");
 	}
 }
 
