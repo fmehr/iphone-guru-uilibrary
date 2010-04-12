@@ -39,7 +39,7 @@ typedef enum {
 	int actualSpacing;
 	BOOL ownSpacing;
 	
-	NSArray *elementsArray;
+	NSMutableArray *elementsArray;
 	
 	UIColor *bcgColor;
 	

@@ -12,6 +12,7 @@
 #define kIGUIScrollViewElementsDefaultPositionIdentifier			@"Default"
 
 #define kIGUIScrollViewElementsDefaultSpacing						20
+#define kIGUIScrollViewElementsDefaultSideSpacing					25
 
 
 @implementation IGUIScrollViewElements
@@ -60,6 +61,7 @@
 
 - (void)addHeight:(int)height {
 	actualHeight += height;
+	actualHeight += [self getSpacing];
 }
 
 - (int)getHeight {
@@ -67,20 +69,42 @@
 	return actualHeight;
 }
 
+- (CGRect)getNewFrameFromFrame:(CGRect)oldFrame andPosition:(IGUIScrollViewElementsPosition)position {
+	[self addHeight:oldFrame.size.height];
+	int pos;
+	if (position == IGUIScrollViewElementsPositionLeft) pos = kIGUIScrollViewElementsDefaultSideSpacing;
+	else {
+		pos = ([[UIScreen mainScreen] applicationFrame].size.width - oldFrame.size.width);
+		if (position == IGUIScrollViewElementsPositionRight) pos -= kIGUIScrollViewElementsDefaultSideSpacing;
+		else pos = (pos / 2);
+	}
+	return CGRectMake(pos, [self getHeight], oldFrame.size.width, oldFrame.size.height);
+}
+
+- (void)addElement:(id)element {
+	if (!elementsArray) elementsArray = [[[NSMutableArray alloc] init] autorelease];
+	[elementsArray addObject:element];
+}
+
 - (void)addLabel:(UILabel *)label alignedTo:(IGUIScrollViewElementsPosition)position {
-	[self addHeight:40];
+	label.frame = [self getNewFrameFromFrame:label.frame andPosition:position];
+	[self addElement:label];
 }
 
 - (void)addTextView:(UITextView *)textView alignedTo:(IGUIScrollViewElementsPosition)position {
-	[self addHeight:40];
+	textView.frame = [self getNewFrameFromFrame:textView.frame andPosition:position];
+	[self addElement:textView];
 }
 
 - (void)addButton:(UIButton *)button alignedTo:(IGUIScrollViewElementsPosition)position {
-	[self addHeight:40];
+	button.frame = [self getNewFrameFromFrame:button.frame andPosition:position];
+	[self addElement:button];
 }
 
 - (void)addImage:(UIImage *)image alignedTo:(IGUIScrollViewElementsPosition)position {
-	[self addHeight:40];
+	UIImageView *iv = [[UIImageView alloc] initWithImage:image];
+	iv.frame = [self getNewFrameFromFrame:iv.frame andPosition:position];
+	[self addElement:iv];
 }
 
 - (UIScrollView *)getWithPositionMemoryIdentifier:(NSString *)identifier {
@@ -91,6 +115,10 @@
 	scrollView.backgroundColor = bcgColor;
 	scrollView.alwaysBounceHorizontal = NO;
 	scrollView.alwaysBounceVertical = YES;
+	
+	if (elementsArray) for (id object in elementsArray) {
+		[scrollView addSubview:object];
+	}
 	
 	return scrollView;
 }
