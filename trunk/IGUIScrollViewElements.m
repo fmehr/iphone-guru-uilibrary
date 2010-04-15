@@ -45,8 +45,25 @@
 	[self enablePositionMemoryWithIdentifier:nil];
 }
 
--(CGRect)getaaa {
-	return CGRectMake(0, 0, scrollWidth, scrollHeight);
+- (void)setClearColorForElementsBackground:(BOOL)useClearColor {
+	globalClearColor = useClearColor;
+}
+
+- (void)setClearColorForElementsBackground {
+	[self setClearColorForElementsBackground:YES];
+}
+
+- (void)setDefaultFontForUILabels:(UIFont *)font {
+	defaultFontForLabels = font;
+}
+
+- (void)setDefaultFontForUITextView:(UIFont *)font {
+	defaultFontForTextViews = font;
+}
+
+- (void)setDefaultFontForAll:(UIFont *)font {
+	[self setDefaultFontForUILabels:font];
+	[self setDefaultFontForUITextView:font];
 }
 
 - (void)setSpacing:(int)spacing {
@@ -61,8 +78,15 @@
 
 - (void)addHeight:(int)height {
 	actualHeight += height;
-	actualHeight += [self getSpacing];
 }
+
+- (void)addSpacing:(int)spacing {
+	actualHeight += spacing;
+}	
+
+- (void)addDefaultSpacing {
+	actualHeight += [self getSpacing];
+}	
 
 - (int)getHeight {
 	if (!actualHeight) actualHeight = kIGUIScrollViewElementsDefaultSpacing;
@@ -87,13 +111,16 @@
 }
 
 - (void)addCustom:(UIView *)element alignedTo:(IGUIScrollViewElementsPosition)position {
+	[self addDefaultSpacing];
 	element.frame = [self getNewFrameFromFrame:element.frame andPosition:position];
 	[self addHeight:element.frame.size.height];
 	[self addElement:element];
 }
 
 - (void)addLabel:(UILabel *)label alignedTo:(IGUIScrollViewElementsPosition)position {
-	label.backgroundColor = [UIColor clearColor];
+	[self addDefaultSpacing];
+	if (globalClearColor) label.backgroundColor = [UIColor clearColor];
+	if (defaultFontForLabels) label.font = defaultFontForLabels;
 	label.numberOfLines = 0;
 	if (label.frame.size.height == 0) {
 		CGSize max = CGSizeMake((scrollWidth - (2 * kIGUIScrollViewElementsDefaultSideSpacing)), 9999);
@@ -102,9 +129,11 @@
 		newFrame.size.width = expected.width;
 		newFrame.size.height = expected.height;
 		label.frame = newFrame;
+		/*
 		if (position == IGUIScrollViewElementsPositionRight) label.textAlignment = UITextAlignmentRight;
 		else if (position == IGUIScrollViewElementsPositionCenter) label.textAlignment = UITextAlignmentCenter;
 		else label.textAlignment = UITextAlignmentLeft;
+		//*/
 	}
 	label.frame = [self getNewFrameFromFrame:label.frame andPosition:position];
 	[self addHeight:label.frame.size.height];
@@ -112,18 +141,23 @@
 }
 
 - (void)addTextView:(UITextView *)textView alignedTo:(IGUIScrollViewElementsPosition)position {
-	textView.backgroundColor = [UIColor clearColor];
+	[self addDefaultSpacing];
+	if (globalClearColor) textView.backgroundColor = [UIColor clearColor];
+	if (defaultFontForTextViews) textView.font = defaultFontForTextViews;
 	textView.frame = [self getNewFrameFromFrame:textView.frame andPosition:position];
 	if (textView.frame.size.height == 0) {
-		CGSize max = CGSizeMake((scrollWidth - (2 * kIGUIScrollViewElementsDefaultSideSpacing)), 9999);
+		CGSize max = CGSizeMake(((scrollWidth + 8) - (2 * kIGUIScrollViewElementsDefaultSideSpacing)), 9999);
 		CGSize expected = [textView.text sizeWithFont:textView.font constrainedToSize:max lineBreakMode:UILineBreakModeWordWrap]; 
 		CGRect newFrame = textView.frame;
 		if (expected.height > (expected.height -= (2 * kIGUIScrollViewElementsDefaultSpacing))) expected.height -= (2 * kIGUIScrollViewElementsDefaultSpacing);
+		newFrame.size.width = expected.width;
 		newFrame.size.height = expected.height;
 		textView.frame = newFrame;
+		/*
 		if (position == IGUIScrollViewElementsPositionRight) textView.textAlignment = UITextAlignmentRight;
 		else if (position == IGUIScrollViewElementsPositionCenter) textView.textAlignment = UITextAlignmentCenter;
-		else textView.textAlignment = UITextAlignmentLeft;
+		else textView.textAlignment = UITextAlignment;
+		//*/
 	}
 	textView.frame = [self getNewFrameFromFrame:textView.frame andPosition:position];
 	textView.editable = NO;
@@ -132,6 +166,7 @@
 }
 
 - (void)addButton:(UIButton *)button withTarget:(id)target andSelector:(SEL)selector alignedTo:(IGUIScrollViewElementsPosition)position {
+	[self addDefaultSpacing];
 	[button addTarget:target action:selector forControlEvents:UIControlEventTouchUpInside];
 	if (button.frame.size.height == 0) {
 		CGSize max = CGSizeMake(scrollWidth, 9999);
@@ -140,7 +175,7 @@
 		if (position == IGUIScrollViewElementsPositionFull) expected.width = ((scrollWidth - diff) - (2 * kIGUIScrollViewElementsDefaultSideSpacing));
 		button.frame = CGRectMake(0, 0, (expected.width + diff), 37);
 	}
-	button.backgroundColor = [UIColor clearColor];
+	if (globalClearColor) button.backgroundColor = [UIColor clearColor];
 	button.frame = [self getNewFrameFromFrame:button.frame andPosition:position];
 	[self addHeight:button.frame.size.height];
 	[self addElement:button];
@@ -153,6 +188,7 @@
 }
 
 - (void)addImage:(UIImage *)image alignedTo:(IGUIScrollViewElementsPosition)position {
+	[self addDefaultSpacing];
 	UIImageView *iv = [[UIImageView alloc] initWithImage:image];
 	if (iv.frame.size.width > scrollWidth) {
 		int oldW = iv.frame.size.width;
@@ -167,7 +203,22 @@
 	[iv release];
 }
 
+- (void)addImage:(UIImage *)image withDescription:(NSString *)description inColor:(UIColor *)descriptionColor alignedTo:(IGUIScrollViewElementsPosition)position {
+	[self addImage:image alignedTo:position];
+	UILabel *label = [[UILabel alloc] init];
+	label.text = description;
+	label.font = [UIFont systemFontOfSize:12];
+	label.textColor = descriptionColor;
+	int sp = [self getSpacing];
+	[self setSpacing:6];
+	[self addLabel:label alignedTo:position];
+	[self setSpacing:sp];
+	[label release];
+	
+}
+
 - (void)addImageFromUrl:(NSString *)imageUrl withPreloader:(BOOL)preloader alignedTo:(IGUIScrollViewElementsPosition)position {
+	[self addDefaultSpacing];
 	/*UIImageView *iv = [[UIImage alloc] initWithData:<#(NSData *)data#>];
 	iv.frame = [self getNewFrameFromFrame:iv.frame andPosition:position];
 	[self addHeight:iv.frame.size.height];
