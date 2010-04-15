@@ -40,6 +40,11 @@ typedef enum {
 	int actualSpacing;
 	BOOL ownSpacing;
 	
+	BOOL globalClearColor;
+	
+	UIFont *defaultFontForLabels;
+	UIFont *defaultFontForTextViews;
+	
 	NSMutableArray *elementsArray;
 	
 	UIColor *bcgColor;
@@ -59,7 +64,21 @@ typedef enum {
 
 - (void)enablePositionMemoryWithIdentifier:(NSString *)identifier;
 
+- (void)setClearColorForElementsBackground:(BOOL)useClearColor;
+
+- (void)setClearColorForElementsBackground;
+
+- (void)setDefaultFontForUILabels:(UIFont *)font;
+
+- (void)setDefaultFontForUITextView:(UIFont *)font;
+
+- (void)setDefaultFontForAll:(UIFont *)font;
+
 - (void)setSpacing:(int)spacing;
+
+- (void)addSpacing:(int)spacing;
+
+- (void)addDefaultSpacing;
 
 
 
@@ -74,6 +93,8 @@ typedef enum {
 - (void)addButtonWithTitle:(NSString *)title withTarget:(id)target andSelector:(SEL)selector alignedTo:(IGUIScrollViewElementsPosition)position;
 
 - (void)addImage:(UIImage *)image alignedTo:(IGUIScrollViewElementsPosition)position;
+
+- (void)addImage:(UIImage *)image withDescription:(NSString *)description inColor:(UIColor *)descriptionColor alignedTo:(IGUIScrollViewElementsPosition)position;
 
 
 
