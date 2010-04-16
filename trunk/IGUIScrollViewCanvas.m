@@ -59,6 +59,10 @@
 	[self enablePositionMemoryWithIdentifier:nil];
 }
 
+- (CGRect)getFrame {
+	return CGRectMake(0, 0, scrollWidth, scrollHeight);
+}
+
 - (UIScrollView *)getWithPosition:(int)page {
 	if (!contentArray) contentArray = [[[NSArray alloc] init] autorelease];
 	if (page > [contentArray count]) page = 0;

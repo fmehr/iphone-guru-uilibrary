@@ -66,6 +66,8 @@
 /// enable position history with custom memory identifier
 - (void)enablePositionMemoryWithIdentifier:(NSString *)identifier;
 
+- (CGRect)getFrame;
+
 /// returns your UIScrollView with predefined page
 - (UIScrollView *)getWithPosition:(int)page;
 

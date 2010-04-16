@@ -113,6 +113,10 @@
 	return (UIScrollView *)main;
 }
 
+- (CGRect)getFrame {
+	return CGRectMake(0, 0, scrollWidth, scrollHeight);
+}
+
 - (UIScrollView *)get {
 	return [self getWithPosition:0];
 }
