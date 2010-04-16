@@ -56,6 +56,8 @@
 
 - (void)enablePositionMemoryWithIdentifier:(NSString *)identifier;
 
+- (CGRect)getFrame;
+
 - (UIScrollView *)getWithPosition:(int)page;
 
 - (UIScrollView *)getWithPositionMemoryIdentifier:(NSString *)identifier;

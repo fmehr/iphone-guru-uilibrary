@@ -275,7 +275,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>9</integer>
+									<integer>12</integer>
 									<integer>7</integer>
 									<integer>1</integer>
 									<integer>0</integer>
@@ -301,7 +301,7 @@
 							<real>228</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>1380 354 1280 719 1280 223 1440 900 </string>
+						<string>0 59 1280 719 0 0 1280 778 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -319,7 +319,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>IGUIScrollViewImage.m</string>
+								<string>IGUIScrollViewElements.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -327,11 +327,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>IGUIScrollViewImage.m</string>
+										<string>IGUIScrollViewElements.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>79C3DD371173818500961857</string>
+										<string>79C3E1781174D2DE00961857</string>
 										<key>history</key>
 										<array>
 											<string>79C3DC2F117349E800961857</string>
@@ -342,10 +342,10 @@
 											<string>79C3DCCC1173621000961857</string>
 											<string>79C3DCCE1173621000961857</string>
 											<string>79C3DCDF11736A0500961857</string>
-											<string>79C3DD2A11737B0E00961857</string>
-											<string>79C3DD2B11737B0E00961857</string>
-											<string>79C3DD341173810700961857</string>
-											<string>79C3DD351173810700961857</string>
+											<string>79C3DD5811746B9100961857</string>
+											<string>79C3DD5911746B9100961857</string>
+											<string>79C3DDB81174775500961857</string>
+											<string>79C3DDB91174775500961857</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -357,14 +357,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {1030, 464}}</string>
+								<string>{{0, 0}, {1030, 614}}</string>
 								<key>RubberWindowFrame</key>
-								<string>1380 354 1280 719 1280 223 1440 900 </string>
+								<string>0 59 1280 719 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>464pt</string>
+							<string>614pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -377,14 +377,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 469}, {1030, 209}}</string>
+								<string>{{0, 619}, {1030, 59}}</string>
 								<key>RubberWindowFrame</key>
-								<string>1380 354 1280 719 1280 223 1440 900 </string>
+								<string>0 59 1280 719 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>209pt</string>
+							<string>59pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -544,10 +544,9 @@
 	<key>WindowOrderList</key>
 	<array>
 		<string>79E1BB16116CE0EF00FF81C0</string>
-		<string>/Projects/iPhone/IGUILibrary/IGUILibrary.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>1380 354 1280 719 1280 223 1440 900 </string>
+	<string>0 59 1280 719 0 0 1280 778 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
